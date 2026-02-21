@@ -9,7 +9,10 @@ module.exports = (req, res) => {
   }
 
   try {
-    const decoded = jwt.verify(token, "supersecretkey123");
+    const decoded = jwt.verify(
+      token,
+      process.env.JWT_SECRET || "supersecretkey123"
+    );
 
     return res.redirect(decoded.url);
 
